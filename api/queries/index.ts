@@ -13,7 +13,7 @@ query {
             coverImage {
                 extraLarge
             }
-            status(version: 2)
+            status
             averageScore
             episodes
             genres
@@ -36,7 +36,7 @@ query {
             coverImage {
                 extraLarge
             }
-            status(version: 2)
+            status
             averageScore
             episodes
             genres

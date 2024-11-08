@@ -21,8 +21,6 @@ export const formatStatus = (status: string): string => {
             return "Finished";
         case "CANCELLED":
             return "Cancelled";
-        case "HIATUS":
-            return "On Hiatus";
         case "NOT_YET_RELEASED":
             return "Not Yet Released";
         default:
