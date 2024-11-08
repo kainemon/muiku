@@ -8,6 +8,9 @@ export interface IBase {
     title: string;
     cover: string;
     status: string;
+    format: string;
+    season: string;
+    year: number | null;
     rating: number | null;
     episodes: number;
     genres: string[];

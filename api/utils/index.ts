@@ -28,6 +28,44 @@ export const formatStatus = (status: string): string => {
     }
 }
 
+export const formatFormat = (format: string): string => {
+    switch (format) {
+        case "TV":
+            return "Tv";
+        case "TV_SHORT":
+            return "Tv Short";
+        case "MOVIE":
+            return "Movie";
+        case "SPECIAL":
+            return "Special";
+        case "OVA":
+            return "Ova";
+        case "ONA":
+            return "Ona";
+        case "MUSIC":
+            return "Music";
+        default:
+            return format;
+    }
+}
+
+export const formatSeason = (season: string): string => {
+    switch (season) {
+        case "WINTER":
+            return "Winter";
+        case "SPRING":
+            return "Spring";
+        case "SUMMER":
+            return "Summer";
+        case "FALL":
+            return "Fall";
+        case null:
+            return "TBA"
+        default:
+            return season;
+    }
+}
+
 export const formatRating = (rating: number): number | null => {
     return rating ? rating / 10 : rating
 }

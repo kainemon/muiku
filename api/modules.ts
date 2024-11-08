@@ -1,6 +1,17 @@
 import type { IBase, IPagination } from "./types";
-import { TrendingQuery, PopularQuery, UpcomingQuery } from "./queries";
-import { fetchAnilist, formatStatus, formatRating, getNextSeasonAndYear } from "./utils";
+import {
+    TrendingQuery,
+    PopularQuery,
+    UpcomingQuery
+} from "./queries";
+import {
+    fetchAnilist,
+    formatStatus,
+    formatFormat,
+    formatSeason,
+    formatRating,
+    getNextSeasonAndYear
+} from "./utils";
 import ErrorHandler from "./handlers/errorHandler";
 
 const getPagination = (data: any): IPagination => {
@@ -16,6 +27,9 @@ const getMedia = (data: any): IBase => {
         title: data.title.romaji,
         cover: data.coverImage.extraLarge,
         status: formatStatus(data.status),
+        format: formatFormat(data.format),
+        season: formatSeason(data.season),
+        year: data.seasonYear,
         rating: formatRating(data.averageScore),
         episodes: data.episodes,
         genres: data.genres

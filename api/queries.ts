@@ -14,6 +14,9 @@ query {
                 extraLarge
             }
             status
+            format
+            season
+            seasonYear
             averageScore
             episodes
             genres
@@ -37,6 +40,9 @@ query {
                 extraLarge
             }
             status
+            format
+            season
+            seasonYear
             averageScore
             episodes
             genres
@@ -60,6 +66,9 @@ query {
                 extraLarge
             }
             status
+            format
+            season
+            seasonYear
             averageScore
             episodes
             genres
