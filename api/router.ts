@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { getTrending, getPopular, getUpcoming } from "./modules";
+import { getTrending, getPopular, getUpcoming, getInfo } from "./modules";
 import { isNumber } from "./utils";
 import ErrorHandler from "./handlers/errorHandler";
 
@@ -50,6 +50,27 @@ router.get("/upcoming/:page?/:per?", async (c) => {
         }
         const data = await getUpcoming(pagination.page, pagination.per);
         return c.json(data, 200);
+    } catch (error) {
+        if (error instanceof ErrorHandler)
+            return c.json({
+                status: error.status,
+                error: error.message
+            }, error.status);
+    }
+});
+
+router.get("/info/:id", async (c) => {
+    try {
+        const { id } = c.req.param();
+        if (id && isNumber(id)) {
+            const data = await getInfo(parseInt(id));
+            return c.json(data, 200);
+        } else {
+            return c.json({
+                status: 400,
+                error: "A proper (id) is required!"
+            }, 400);
+        }
     } catch (error) {
         if (error instanceof ErrorHandler)
             return c.json({

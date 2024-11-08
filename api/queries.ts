@@ -75,3 +75,53 @@ query {
         }
     }
 }`;
+
+export const InfoQuery = (id: number) => `
+query {
+    Media(id: ${id}) {
+        id
+        title {
+            romaji
+        }
+        coverImage {
+            extraLarge
+        }
+        status
+        format
+        season
+        seasonYear
+        averageScore
+        episodes
+        genres
+        description
+        isAdult
+        trailer {
+            id
+        }
+        studios(isMain: true) {
+            nodes {
+                name
+            }
+        }
+        recommendations {
+            nodes {
+                mediaRecommendation {
+                    id
+                    title {
+                        romaji
+                    }
+                    coverImage {
+                        extraLarge
+                    }
+                    status
+                    format
+                    season
+                    seasonYear
+                    averageScore
+                    episodes
+                    genres
+                }
+            }
+        }
+    }
+}`;

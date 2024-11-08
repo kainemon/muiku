@@ -15,3 +15,11 @@ export interface IBase {
     episodes: number;
     genres: string[];
 }
+
+export interface IInfo extends IBase {
+    synopsis: string;
+    nsfw: boolean;
+    trailer: string | null;
+    studio: string | null;
+    recommendations: IBase[] | null;
+}
