@@ -43,3 +43,26 @@ query {
         }
     }
 }`;
+
+export const UpcomingQuery = (page: number, per: number, season: string, year: number) => `
+query {
+    Page(page: ${page}, perPage: ${per}) {
+        pageInfo {
+            currentPage
+            hasNextPage
+        }
+        media(type: ANIME, sort: POPULARITY_DESC, season: ${season}, seasonYear: ${year}) {
+            id
+            title {
+                romaji
+            }
+            coverImage {
+                extraLarge
+            }
+            status
+            averageScore
+            episodes
+            genres
+        }
+    }
+}`;

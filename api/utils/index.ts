@@ -31,3 +31,36 @@ export const formatStatus = (status: string): string => {
 export const formatRating = (rating: number): number | null => {
     return rating ? rating / 10 : rating
 }
+
+export const getNextSeasonAndYear = (): { season: string, year: number } => {
+    const now = new Date();
+    const currentMonth = now.getMonth() + 1;
+    const currentYear = now.getFullYear();
+
+    let season: string;
+    let year: number;
+
+    switch (true) {
+        case (currentMonth === 12 || currentMonth <= 2):
+            season = "SPRING";
+            year = currentYear + 1;
+            break;
+        case (currentMonth >= 3 && currentMonth <= 5):
+            season = "SUMMER";
+            year = currentYear;
+            break;
+        case (currentMonth >= 6 && currentMonth <= 8):
+            season = "FALL";
+            year = currentYear;
+            break;
+        case (currentMonth >= 9 && currentMonth <= 11):
+            season = "WINTER";
+            year = currentYear + 1;
+            break;
+        default:
+            season = "UNKNOWN";
+            year = currentYear;
+    }
+
+    return { season, year }
+}

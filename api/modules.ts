@@ -1,6 +1,6 @@
 import type { IBase, IPagination } from "./types";
-import { TrendingQuery, PopularQuery } from "./queries";
-import { fetchAnilist, formatStatus, formatRating } from "./utils";
+import { TrendingQuery, PopularQuery, UpcomingQuery } from "./queries";
+import { fetchAnilist, formatStatus, formatRating, getNextSeasonAndYear } from "./utils";
 import ErrorHandler from "./handlers/errorHandler";
 
 const getPagination = (data: any): IPagination => {
@@ -39,6 +39,21 @@ export const getTrending = async (page: number, per: number) => {
 export const getPopular = async (page: number, per: number) => {
     try {
         const query = PopularQuery(page, per);
+        const { data } = await fetchAnilist.post("", { query });
+        const pagination: IPagination = getPagination(data);
+        const result: IBase[] = data.data.Page.media.map(getMedia);
+        return { pagination, result }
+    } catch (error) {
+        if (error instanceof Error)
+            console.error(error.stack);
+        throw new ErrorHandler(500, "Internal Server Error");
+    }
+}
+
+export const getUpcoming = async (page: number, per: number) => {
+    try {
+        const { season, year } = getNextSeasonAndYear();
+        const query = UpcomingQuery(page, per, season, year);
         const { data } = await fetchAnilist.post("", { query });
         const pagination: IPagination = getPagination(data);
         const result: IBase[] = data.data.Page.media.map(getMedia);
